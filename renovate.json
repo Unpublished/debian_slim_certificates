@@ -1,6 +1,6 @@
 {
   "extends": [
-    "config:base",
+    "config:recommended",
     "docker:pinDigests",
     "helpers:pinGitHubActionDigests",
     "default:automergeDigest"
