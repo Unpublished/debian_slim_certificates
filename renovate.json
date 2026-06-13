@@ -1,0 +1,32 @@
+{
+  "extends": [
+    "config:base",
+    "docker:pinDigests",
+    "helpers:pinGitHubActionDigests",
+    "default:automergeDigest"
+  ],
+  "enabledManagers": [
+    "dockerfile",
+    "github-actions"
+  ],
+  "dockerfile": {
+    "enabled": true
+  },
+  "packageRules": [
+    {
+      "matchManagers": ["dockerfile"],
+      "matchDatasources": ["docker"],
+      "matchUpdateTypes": ["minor", "patch", "digest"],
+      "groupName": "Docker base image updates",
+      "automerge": true,
+      "automergeType": "pr"
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "GitHub Actions updates",
+      "automerge": true,
+      "automergeType": "pr"
+    }
+  ]
+}
